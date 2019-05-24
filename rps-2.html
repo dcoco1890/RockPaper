@@ -22,7 +22,7 @@
   </header>
 
   <main>
-    <div class="container">
+    <div class="container mt-2">
       <div class="row">
         <div class="col">
           <div class="border card" style="width: 18rem;">
@@ -44,6 +44,8 @@
   <script type="text/javascript">
 
     var computerChoices = ["r", "p", "s"];
+
+    //initializing score variables
     var uScore = 0;
     var cScore = 0;
     var ties = 0;
@@ -55,20 +57,24 @@
       var userGuess = event.key;
       var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-      if (userGuess === computerGuess){
-          ties++;
+      if (userGuess === computerGuess){   //easiest check so I did it first
+
+          ties++;          // increments the tie counter
           document.getElementById('tieAm').innerHTML = ties;
           document.getElementById('message').innerText = msg[2];
+
+
+          //This code here was the old way. new way is a bit shorter and prettier.
+
          // var message = document.getElementById('message');
           // message.innerHTML = msg[2];
       }   
       else if (userGuess === "r" && computerGuess === "s"){
 
         //User Win
-          uScore++;
-          document.getElementById('user-score').innerHTML = uScore;
-          var message = document.getElementById('message');
-          message.innerHTML = msg[0];
+          uScore++;   // increment users score
+          document.getElementById('user-score').innerHTML = uScore;  // grabs element with id user-score and changes the inner html to the value of uScore variable
+          document.getElementById('message').innerText = msg[0];  // similar to above, but I used an array cause why not
       }
       else if (userGuess === "r" && computerGuess === "p"){
         
@@ -82,39 +88,37 @@
         // userwin
           uScore++;
           document.getElementById('user-score').innerHTML = uScore;
-          var message = document.getElementById('message');
-          message.innerHTML = msg[0];
+          document.getElementById('message').innerText = msg[0];
+         
       }
       else if (userGuess === "p" && computerGuess === "s"){
        
         // compwin
           cScore++;   
           document.getElementById('comp-score').innerHTML = cScore; 
-          var message = document.getElementById('message');
-          message.innerHTML = msg[1];
+          document.getElementById('message').innerText = msg[1]; 
       }
       else if (userGuess === "s" && computerGuess === "r"){
         
         // compwin
-          cScore++;   
+          cScore++;    //increment computer score
           document.getElementById('comp-score').innerHTML = cScore; 
-          var message = document.getElementById('message');
-          message.innerHTML = msg[1];
+          document.getElementById('message').innerText = msg[1]; 
       }
-      else{    //so while this technically works as the last statement, it also means that ANYTHING you enter counts as a UserWin. Will need to fix.
-            // userwin
+      else if (userGuess === "s" && computerGuess === "p") {   
+
+          // userwin
           uScore++;
           document.getElementById('user-score').innerHTML = uScore;
-          var message = document.getElementById('message');
-          message.innerHTML = msg[0];
+          document.getElementById('message').innerText = msg[0];
+      }
+      else if (userGuess !== "r" || userGuess !== "s" || userGuess !== "p"){  //this only runs if the other conditions were not met. It lets the user know they entered an incorrect character
+
+          var wrong = "That is not an R, P, or S";
+          document.getElementById('message').innerText = wrong;
+         
       }
       
-      // var compAnswer;
-      // if 
-
-
-      // alert("User guess: " + userGuess);
-      // alert("Computer guess: " + computerGuess);
 
     };
   </script>

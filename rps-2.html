@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors Part 2
+  </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+<header>
+<div class="container">
+  <div class="row mt-3">
+    
+  <div class="col mb-3">
+    <h1 id="message">Press R, P, or S to start!</h1>
+  </div>  
+  <div class="col"></div>
+  </div>
+  </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="border card" style="width: 18rem;">
+    <h2 class="card-header">Score</h2>
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item">User Score: <span id="user-score" class="ml-2"></span></li>
+    <li class="list-group-item">Computer Score: <span id="comp-score" class="ml-2"></span></li>
+    <li class="list-group-item">Ties: <span id="tieAm" class="ml-2"></span></li>
+     </ul>     
+          </div>
+          </div>
+          <div class="col"></div>
+  </div>
+  </div>
+  </main>
+  
+
+
+  <script type="text/javascript">
+
+    var computerChoices = ["r", "p", "s"];
+    var uScore = 0;
+    var cScore = 0;
+    var ties = 0;
+    
+   
+    document.onkeyup = function(event) {
+
+      var msg = ["You Win!", "You Lose!",  "It's a Tie!"];
+      var userGuess = event.key;
+      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+      if (userGuess === computerGuess){
+          ties++;
+          document.getElementById('tieAm').innerHTML = ties;
+          document.getElementById('message').innerText = msg[2];
+         // var message = document.getElementById('message');
+          // message.innerHTML = msg[2];
+      }   
+      else if (userGuess === "r" && computerGuess === "s"){
+
+        //User Win
+          uScore++;
+          document.getElementById('user-score').innerHTML = uScore;
+          var message = document.getElementById('message');
+          message.innerHTML = msg[0];
+      }
+      else if (userGuess === "r" && computerGuess === "p"){
+        
+        // Compwin
+          cScore++;    //increment computer score
+          document.getElementById('comp-score').innerHTML = cScore; // grabs element id comp-score, changes the html to the value inside of cScore
+          document.getElementById('message').innerText = msg[1]; // this is quicker than the other way, and it still works.
+      }
+      else if (userGuess === "p" && computerGuess === "r"){
+      
+        // userwin
+          uScore++;
+          document.getElementById('user-score').innerHTML = uScore;
+          var message = document.getElementById('message');
+          message.innerHTML = msg[0];
+      }
+      else if (userGuess === "p" && computerGuess === "s"){
+       
+        // compwin
+          cScore++;   
+          document.getElementById('comp-score').innerHTML = cScore; 
+          var message = document.getElementById('message');
+          message.innerHTML = msg[1];
+      }
+      else if (userGuess === "s" && computerGuess === "r"){
+        
+        // compwin
+          cScore++;   
+          document.getElementById('comp-score').innerHTML = cScore; 
+          var message = document.getElementById('message');
+          message.innerHTML = msg[1];
+      }
+      else{    //so while this technically works as the last statement, it also means that ANYTHING you enter counts as a UserWin. Will need to fix.
+            // userwin
+          uScore++;
+          document.getElementById('user-score').innerHTML = uScore;
+          var message = document.getElementById('message');
+          message.innerHTML = msg[0];
+      }
+      
+      // var compAnswer;
+      // if 
+
+
+      // alert("User guess: " + userGuess);
+      // alert("Computer guess: " + computerGuess);
+
+    };
+  </script>
+
+</body>
+
+</html>

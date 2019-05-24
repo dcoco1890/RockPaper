@@ -75,6 +75,7 @@
           uScore++;   // increment users score
           document.getElementById('user-score').innerHTML = uScore;  // grabs element with id user-score and changes the inner html to the value of uScore variable
           document.getElementById('message').innerText = msg[0];  // similar to above, but I used an array cause why not
+          
       }
       else if (userGuess === "r" && computerGuess === "p"){
         
@@ -119,6 +120,23 @@
          
       }
       
+
+      if (uScore > cScore){
+        var item = document.getElementsByTagName('li').item(1); //changes the cscore back to regular if it was red
+        item.className = 'list-group-item';
+
+        var attr = document.getElementsByTagName('li').item(0); //gets the user score item
+        var classy = attr.getAttribute('class'); //storing the class value of that list item to append to it
+        attr.setAttribute('class', classy + ' bg-success'); //This changes the attribute of the item I grabbed (list element 0, user score) and adds it's own class plus the bootstap bg-success to make the background green
+      }
+      else if (cScore > uScore){
+        var item = document.getElementsByTagName('li').item(0);
+        item.className = 'list-group-item';
+
+        var attr = document.getElementsByTagName('li').item(1); //gets the user score item
+        var classy = attr.getAttribute('class'); //storing the class value of that list item to append to it
+        attr.setAttribute('class', classy + ' bg-danger'); // I think this will change the the class attribute to the value it had plus bg success, giving it a green color
+      }
 
     };
   </script>

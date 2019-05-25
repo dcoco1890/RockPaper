@@ -121,21 +121,49 @@
       }
       
 
-      if (uScore > cScore){
-        var item = document.getElementsByTagName('li').item(1); //changes the cscore back to regular if it was red
-        item.className = 'list-group-item';
+      if (uScore > cScore && uScore > ties){
+        var itemOne = document.getElementsByTagName('li').item(1); //changes the cscore back to regular if it was red
+        itemOne.className = 'list-group-item';
+
+        var itemTwo = document.getElementsByTagName('li').item(2); //changes the tie back to regular if it was blue
+        itemTwo.className = 'list-group-item';
 
         var attr = document.getElementsByTagName('li').item(0); //gets the user score item
         var classy = attr.getAttribute('class'); //storing the class value of that list item to append to it
-        attr.setAttribute('class', classy + ' bg-success'); //This changes the attribute of the item I grabbed (list element 0, user score) and adds it's own class plus the bootstap bg-success to make the background green
+        attr.setAttribute('class', classy + ' bg-success text-light'); //This changes the attribute of the item I grabbed (list element 0, user score) and adds it's own class plus the bootstap bg-success to make the background green
       }
-      else if (cScore > uScore){
-        var item = document.getElementsByTagName('li').item(0);
-        item.className = 'list-group-item';
+      else if (cScore > uScore && cScore > ties){
+        var itemOne = document.getElementsByTagName('li').item(0);
+        itemOne.className = 'list-group-item';
 
-        var attr = document.getElementsByTagName('li').item(1); //gets the user score item
-        var classy = attr.getAttribute('class'); //storing the class value of that list item to append to it
-        attr.setAttribute('class', classy + ' bg-danger'); // I think this will change the the class attribute to the value it had plus bg success, giving it a green color
+        var itemTwo = document.getElementsByTagName('li').item(2);
+        itemTwo.className = 'list-group-item';
+
+        var attr = document.getElementsByTagName('li').item(1); 
+        var classy = attr.getAttribute('class'); 
+        attr.setAttribute('class', classy + ' bg-danger text-light'); 
+      }
+      else if (ties > uScore && ties > cScore){
+        var itemOne = document.getElementsByTagName('li').item(0);
+        itemOne.className = 'list-group-item';
+
+        var itemTwo = document.getElementsByTagName('li').item(1);
+        itemTwo.className = 'list-group-item';
+
+        var attr = document.getElementsByTagName('li').item(2); 
+        var classy = attr.getAttribute('class'); 
+        attr.setAttribute('class', classy + ' bg-info text-light'); 
+
+      }
+      else if (uScore === cScore || uScore === ties || cScore === ties) {
+        var itemOne = document.getElementsByTagName('li').item(0);
+        itemOne.className = 'list-group-item';
+
+        var itemTwo = document.getElementsByTagName('li').item(1);
+        itemTwo.className = 'list-group-item';
+
+        var itemThree = document.getElementsByTagName('li').item(2);
+        itemThree.className = 'list-group-item';
       }
 
     };

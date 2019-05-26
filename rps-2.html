@@ -16,7 +16,9 @@
   <div class="col mb-3">
     <h1 id="message">Press R, P, or S to start!</h1>
   </div>  
-  <div class="col"></div>
+  <div class="col"><h1 class="text-center" id="picked"></h1></div>
+  <div class="col"><h1 class="text-center" id="Cpicked"></h1></div>
+
   </div>
   </div>
   </header>
@@ -34,7 +36,10 @@
      </ul>     
           </div>
           </div>
-          <div class="col"></div>
+          <div class="col">
+             
+          </div>
+         
   </div>
   </div>
   </main>
@@ -54,8 +59,32 @@
     document.onkeyup = function(event) {
 
       var msg = ["You Win!", "You Lose!",  "It's a Tie!"];
+      var youPicked = ["You picked Rock", "You picked Paper", "You picked Scissors"];
+      var cPicked = ["Comp: Rock", "Comp: Paper", "Comp: Scissors"]
+
       var userGuess = event.key;
       var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+      //This code lets the user know what they pressed more clearly
+      if (userGuess === "r"){
+        document.getElementById('picked').innerHTML = youPicked[0];
+      }
+      else if (userGuess === "p"){
+        document.getElementById('picked').innerHTML = youPicked[1];
+      }
+      else if (userGuess === "s"){
+        document.getElementById('picked').innerHTML = youPicked[2];
+      }
+//This code changes the computer picked message
+      if (computerGuess === "r"){
+        document.getElementById('Cpicked').innerHTML = cPicked[0];
+      }
+      else if (computerGuess === "p"){
+        document.getElementById('Cpicked').innerHTML = cPicked[1];
+      }
+      else if (computerGuess === "s"){
+        document.getElementById('Cpicked').innerHTML = cPicked[2];
+      }
 
       if (userGuess === computerGuess){   //easiest check so I did it first
 
@@ -115,12 +144,13 @@
       }
       else if (userGuess !== "r" || userGuess !== "s" || userGuess !== "p"){  //this only runs if the other conditions were not met. It lets the user know they entered an incorrect character
 
-          var wrong = "That is not an R, P, or S";
+          var wrong = "Wrong Key Pressed";
           document.getElementById('message').innerText = wrong;
          
       }
       
 
+//This long if else statement changes the background color depending on the winner.
       if (uScore > cScore && uScore > ties){
         var itemOne = document.getElementsByTagName('li').item(1); //changes the cscore back to regular if it was red
         itemOne.className = 'list-group-item';
@@ -155,7 +185,7 @@
         attr.setAttribute('class', classy + ' bg-info text-light'); 
 
       }
-      else if (uScore === cScore || uScore === ties || cScore === ties) {
+      else if (uScore === cScore || uScore === ties || cScore === ties) { // This block of code resets all li elements to the basic class if there is a tie. Prob an easier way to do this
         var itemOne = document.getElementsByTagName('li').item(0);
         itemOne.className = 'list-group-item';
 
@@ -166,6 +196,9 @@
         itemThree.className = 'list-group-item';
       }
 
+      if (uScore > cScore && uScore > ties){
+
+      }
     };
   </script>
 
